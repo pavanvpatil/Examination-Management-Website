@@ -1,0 +1,96 @@
+h1{
+    margin-top: 0px;
+    font-size: 100px;
+    color: rgb(3, 99, 99);
+    text-align: center;
+    text-shadow: 4px 4px 10px grey;
+    font-family: Lucida Console;
+}
+h2{
+    margin-top: 7px;
+    margin-bottom: 5px;
+    font-size: 50px;
+    color: white;
+    text-align: center;
+    text-shadow: 4px 4px 4px black;
+}
+.Login{
+    border-radius: 15px;
+    margin-right: 50px;
+    float: right;
+    padding: 20px;
+    height: 336px;
+    max-width: 500px;
+    background-color: teal;
+    background-image: linear-gradient(170deg, teal, rgb(85, 85, 231));
+    color: antiquewhite;
+}
+.SignUP{
+    border-radius: 30px;
+    margin: auto;
+    padding: 20px;
+    height: 530px;
+    width: 700px;
+    background-color: teal;
+    background-image: linear-gradient(170deg, teal, rgb(85, 85, 231));
+    color: white;
+    overflow-y: scroll;
+    margin-top: 25px;
+}
+#Sign_up{
+    width: 20%;
+}
+input{
+    padding: 10px;
+    margin: 10px;
+    width: 77.5%;
+    height: 1cm;
+    border-radius: 10px;
+    box-shadow: 3px 3px 5px black;
+}
+.SignUP input{
+    width: 300px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+button{
+    border: none;
+    font-size: 20px;
+    margin: 5px;
+    padding: 5px;
+    width: 50%;
+    border-radius: 5px;
+    background-color: rgb(215, 250, 250);
+    box-shadow: 4px 4px 5px black;
+    cursor: pointer;
+}
+button:hover{
+    background-color: green;
+    color: white;
+    transition: 0.5s;
+}
+#btnlogin{
+    text-align: center;
+}
+#email,#password{
+    text-align: center;
+}
+body{
+    background-image: url("homebgm.png");
+    background-size: cover;
+}
+#bgm{
+    margin-left: 30px;
+    float: left;
+    background-image: url("homeimage.jpg");
+    background-size: cover;
+    width: 500px;
+    height: 380px;
+    border-radius: 30px;
+}
+.SignUP input{
+    display: block;
+}
+.key{
+    width: 400px;
+}

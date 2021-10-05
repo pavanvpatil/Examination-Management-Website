@@ -86,8 +86,7 @@
                     {
                         echo "sesesfes";
                     } 
-                    echo "<script>alert('Sign Up Successful')</script>";
-                    header("location: index.php");
+                    header("location: index.php?user=$flag");
                 }
             
             }

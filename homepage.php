@@ -35,10 +35,10 @@
 </head>
 <body>
 <div class="topnav">
-  <a href="#home">Home</a>
-  <a href="#contact">Contact</a>
-  <a href="#about">About</a>
-  <a href="index.php" onlclick="<?php session_destroy(); ?>">Log-out</a>
+  <a href="#homepage.php">Home</a>
+  <a href="contact.html">Contact</a>
+  <a href="about.html">About</a>
+  <a href="login.php">Log-out</a>
 </div>
 </body>
 </html>

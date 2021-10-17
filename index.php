@@ -69,7 +69,7 @@
     session_start();
     if(isset($_SESSION['loggedin']))
     {
-        header("Location: homepage.html");
+        header("Location: homepage.php");
     }
 ?>
 

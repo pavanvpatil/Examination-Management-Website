@@ -11,7 +11,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>homepage</title>
+    <link rel="icon" href="Extra/letter_q.png">
+    <title>Compete</title>
 <style>
 .topnav {
   overflow: hidden;
@@ -38,7 +39,7 @@
   <a href="#homepage.php">Home</a>
   <a href="contact.html">Contact</a>
   <a href="about.html">About</a>
-  <a href="login.php">Log-out</a>
+  <a href="logout.php">Log-out</a>
 </div>
 </body>
 </html>

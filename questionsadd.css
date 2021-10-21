@@ -1,0 +1,32 @@
+
+.content{
+    width: 70%;
+    
+    margin: auto;
+    margin-top: 30px;
+    background-color: rgba(115, 115, 255, 0.774);
+    border: black solid 2px;
+}
+body
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+h1{
+    text-align: center;
+    margin-left: 0;
+    padding: 7px 0;
+    background-color: gray;
+}
+
+#no_of_options{
+    width: 20px;
+}
+#question{
+    width: 98%;
+    margin: auto;
+}
+

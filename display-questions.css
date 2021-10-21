@@ -1,0 +1,135 @@
+body{
+    background-image: url("bg.jpg");
+    background-size: cover;
+}
+#output{
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 30px;
+    color: rgb(16, 1, 60);
+    position: absolute;
+    top: 10rem;
+    left: 15rem;
+    font-weight: bold;
+    color: red;
+}
+#navbuttons{
+    display: flex;
+    box-sizing: border-box;
+    position: absolute;
+    right: 10rem;
+    top: 12rem;
+    max-width: 20rem;
+}
+.buttonHolder{
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    top: 40rem;
+    left: 25rem;
+}
+.controls{
+    padding: 10px;
+    margin: 10px;
+    font-size: 20px;
+    border-radius: 5px;
+    background-color: rgb(250, 240, 225);
+    color: rgb(37, 140, 224);
+}
+.controls:hover{
+    color: rgb(236, 236, 236);
+    transition: 0.4s;
+    background-color: rgb(30, 96, 36);
+}
+.options{
+    font-size: 20px;
+    padding-left: 15px;
+    color: rgb(16, 1, 60);
+}
+.question{
+    font-size: 25px;
+    margin-bottom: 10px;
+    color: teal;
+}
+h1{
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 7rem;
+    transform: scale(1.1, 1);
+    color: #20546d;
+    text-shadow:6px 6px 40px rgb(57, 130, 154);
+    position: absolute;
+    top: 0rem;
+    left: 30rem;
+    margin: 0rem;
+
+}
+.Qcontainer{
+    width: 55rem;
+    min-height: 22rem;
+    max-height: 25rem;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: bold;
+    background-color: rgb(250, 240, 225);
+    box-shadow: 5px 5px 25px black;
+    position: absolute;
+    top: 15rem;
+    left: 5rem;
+    padding: 1.5rem;
+    box-sizing: border-box;
+}
+input[type='radio']:after {
+    width: 15px;
+    height: 15px;
+    border-radius: 15px;
+    top: -2px;
+    left: -1px;
+    position: relative;
+    background-color: #d1d3d1;
+    content: '';
+    display: inline-block;
+    visibility: visible;
+    border: 2px solid white;
+}
+input[type='radio']:checked:after {
+    width: 18px;
+    height: 18px;
+    border-radius: 18px;
+    top: -2px;
+    left: -1px;
+    position: relative;
+    background-color: green;
+    content: '';
+    display: inline-block;
+    visibility: visible;
+    border: 2px solid white;
+}
+.opdiv{
+    padding: 8px;
+}
+.navbutton{
+    width: 3rem;
+    height: 3rem;
+    border-radius: 1.5rem;
+    font-size: 2rem;
+    padding: 0.4rem;
+    margin: 0.3rem;
+    color: teal;
+    background-color: rgb(250, 240, 225);
+}
+.navbutton:hover{
+    background-color: green;
+    color: white;
+}
+#grandp{
+    display: flex;
+}
+.reviewButton{
+    padding: 10px;
+    margin: 10px;
+    font-size: 17px;
+    border-radius: 5px;
+    background-color: rgb(250, 240, 225);
+    color: rgb(37, 140, 224);
+    position: absolute;
+    top: 11rem;
+    left: 4.5rem;
+}

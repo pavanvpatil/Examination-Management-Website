@@ -58,10 +58,16 @@
         }
         $sql= "SELECT uName FROM userTable WHERE uName='$Username'";
         $result= $conn1->query($sql);
+        $sql= "SELECT uName FROM userTable WHERE uGmail='$Email'";
+        $result1= $conn1->query($sql);
         if($result->num_rows>0)
         {
             echo "<script>alert('Username Already exists')</script>";
         }
+        else if($result1->num_rows>0)
+        {
+            echo "<script>alert('Email Already exists')</script>";
+        }      
         else
         {
             if($flag==1)

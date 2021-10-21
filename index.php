@@ -132,7 +132,7 @@
             if($password==$row['uPassword'])
             {
                 $_SESSION['loggedin']= true;
-                $_SESSION['user']=$username;
+                $_SESSION['user']=$Email;          
                 header("Location:homepage.php"); 
                 $z=1;
             }

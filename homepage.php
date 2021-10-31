@@ -1,9 +1,25 @@
 <?php
     session_start();
+    $email=$_SESSION['mail'];
     if(!isset($_SESSION['loggedin']))
     {
         header("Location: index.php");
     }
+    $connect=mysqli_connect("localhost","root","","userInfo");
+    $sql="SELECT * FROM usertable";
+    $result=mysqli_query($connect,$sql);
+    $data = mysqli_fetch_all($result,MYSQLI_ASSOC);
+    $no_of_users=sizeof($data);
+    $sql="SELECT * FROM usertable WHERE uGmail='$email'";
+    $result=mysqli_query($connect,$sql);
+    $row=$result->fetch_assoc();
+    $username=$row['uName'];
+    $_SESSION['user'] = $username;
+
+    //no of quizes
+    $sqlQuery = "SELECT * FROM quizes";
+    $result = mysqli_query($connect, $sqlQuery);
+    $data = mysqli_fetch_all($result, MYSQLI_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,12 +33,16 @@
 body{
   margin: 0rem;
   padding: 0rem;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight:600;
 }
 .topnav {
   overflow: hidden;
   background-color:#cfcccc;
   height: auto;
   width: auto;
+  position: sticky;
+  top: 0;
 }
 
 .topnav a {
@@ -40,8 +60,8 @@ body{
 }
 
 #login_icon{
-  width: 40px;
-  height: 40px;
+  width: 27px;
+  height: 27px;
   border-radius: 50%;
 }
 
@@ -137,13 +157,14 @@ body{
 </head>
 <body>
 <div class="topnav">
-  <a href="#homepage.php">🏠Home</a>
-  <a href="contact.html">📞Contact</a>
-  <a href="about.html">📚About</a>
-  <a href="#viewprofile.php">👨‍🎓Profile</a>
+  <a href="homepage.php">🏠Home</a>
+  <a href="contact.php">📞Contact</a>
+  <a href="about.php">📚About</a>
+  <a href="viewprofile.php">👨‍🎓Profile</a>
   <a href="logout.php">🚪Logout</a>
   <div align="right" id="log_img">
-  <img src="login_icon.jpg" alt="no image found" id="login_icon">
+  <img src="login_icon.jpg" alt="no image found" id="login_icon"><br>
+  <span style="font-size:15px;color:blue;"><?php echo "$username"; ?></span>
   </div> 
 </div>
 <div class="flex-container">
@@ -153,14 +174,15 @@ body{
   <div class="flex-child2">
     <h1 style="text-align: center;">QUIZ PANEL</h1><br>
     <a href="#Register_Quiz.php">Attempt Quiz</a><br>
-    <a href="#Host_Quiz.php">Host Quiz</a><br>
+    <a href="question.php">Host Quiz</a><br>
     <a href="#Given_Quizs.php">Given Quizs</a><br>
+    <a href="register.php">Register</a>
   </div>
 </div>
 <div class="flex-container2">
   <div class="flex1">
     <h1>📝Quizzes</h1>
-    <h1 style="font-size: 100px; color: red;margin-top: -2%;">899</h1>
+    <h1 style="font-size: 100px; color: red;margin-top: -2%;"><?php echo sizeof($data) ?></h1>
   </div>
   <div class="flex2">
     <h1>✒️Quizzes Hosted</h1>
@@ -168,7 +190,7 @@ body{
   </div>
   <div class="flex3">
     <h1>👨‍🎓Users</h1>
-    <h1 style="font-size: 100px; color: red;margin-top: -2%;">9450</h1>
+    <h1 style="font-size: 100px; color: red;margin-top: -2%;"><?php echo "$no_of_users" ?></h1>
   </div>
 </div><br><br>
 <hr>

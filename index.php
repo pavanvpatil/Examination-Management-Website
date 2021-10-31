@@ -6,6 +6,7 @@
     <link rel="icon" href="Extra/letter_q.png">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="SliderCode/slider-style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
     <title>Compete</title>
     <style>
         #layout{
@@ -27,6 +28,7 @@
            position: fixed;
            z-index: 9999;
            border-radius: 5px;
+           font-weight:800;
         }
         #head{
             background-color: rgb(91, 91, 216);
@@ -34,6 +36,7 @@
             padding: 5px;
             text-align: center;
             margin: 5px 5px 0px 5px;
+            font-weight:800;
         }
         #body{
             background-color: rgb(181, 181, 241);
@@ -41,6 +44,7 @@
             padding: 5px;
             text-align: center;
             margin: 5px 5px 0px 5px;
+            font-weight:800;
         }
         #footer{
             background-color:rgb(91, 91, 216);
@@ -49,15 +53,17 @@
             text-align: center;
             margin: 5px 5px 0px 5px;
             margin-bottom: 5px;
+            font-weight:800;
         }
         #footer button{ 
             color: brown;
             background-color: #fff;
-            width: 40%;
+            width: 20%;
             border-color: black;
             border-radius: 5px;
             cursor: pointer;
             padding: 5px;
+            font-weight:800;
         }
         #footer button:hover{
             background-color: cyan;
@@ -65,7 +71,7 @@
         }
     </style>
 </head>
-<body>
+<body style="font-family: 'Courier New', Courier, monospace;">
 <?php
     session_start();
     if(isset($_SESSION['loggedin']))
@@ -76,18 +82,20 @@
 
 <div id="layout"></div>
      <div id="dlgbox">
-         <div id="head">Website name</div>
-         <div id="body">Sign-Up Successfull</div>
+         <div id="head">Compete</div>
+         <div id="body">Sign-Up Successfull <br> Information regarding Username and Password is sent to Your Mail-Id</div>
          <div id="footer"><button onclick="ok()">OK</button></div>
      </div>
      <script type="text/javascript">
-        function ok(){
+        function ok()
+        {
             var whitebg = document.getElementById("layout");
             var dlg = document.getElementById("dlgbox");
             whitebg.style.display = "none";
             dlg.style.display = "none";
         }
-        function ALERT(){
+        function ALERT()
+        {
             var whitebg = document.getElementById("layout");
             var dlg = document.getElementById("dlgbox");
             whitebg.style.display = "block";
@@ -104,8 +112,10 @@
 <?php
     if($_GET)
     {
-        if($_GET['user']==1)
+        if($_GET['flag']==1)
+        {
             echo '<script type="text/javascript">ALERT()</script>';
+        }
     }
     $conn = mysqli_connect('localhost', 'root', '');
     $sqlQuery = 'CREATE DATABASE IF NOT EXISTS userInfo ;';
@@ -132,7 +142,7 @@
             if($password==$row['uPassword'])
             {
                 $_SESSION['loggedin']= true;
-                $_SESSION['user']=$Email;          
+                $_SESSION['mail']= $Email;          
                 header("Location:homepage.php"); 
                 $z=1;
             }
@@ -140,8 +150,10 @@
     }
 ?>
     
-    <h1 id="title">COMPETE</h1>
-    <img src="logo.png" alt="" id="logo" width=100px height=100px> 
+    <div class="logo_title">
+        <img src="logo.png" alt="image not loaded" width=100px height=100px style="border-radius: 50%;margin-top: 1.8%;">
+        <h1 id="title">COMPETE</h1> 
+    </div>
    <!-- <center><p id="errors"></p></center> -->
     <div class="container">
         <div class="slideContainer" id="#bgm">
@@ -167,20 +179,22 @@
             <span class="button right" onclick="control(1)">&#10095</span>
         </div> 
         <div class="Login">
-            <div style="text-align:center"><span style="font-size:40px;">Login User</span></div>
-            <form action="" method="post"> <!--Login form-->
+            <div style="text-align:center;margin-bottom:6%" ><span style="font-size:40px;">Login User</span></div>
+            <form method="post"> <!--Login form-->
                  <div id="email">
-                 <input type="text" name="Email" placeholder="Email-Id"  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required><br>
+                 <input type="text"  name="Email" placeholder="Email-Id"  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required><br>
                  </div>
                  <div id="password">
                  <input type="password" name="Password" placeholder="Password" required><br>
                  <span style="color:yellow;" id="errors"></span><br>
                  </div>
                 <div id="btnlogin">
-                <input type="submit" value="Log in" name='login' id="log"></input><br><br>
+                <input type="submit" style="font-family: 'Courier New', Courier, monospace;font-weight:800" value="Login" name='login' id="log"></input><br><br>
                 </div>
-                <a href="" style="color:yellow;">Forgot Password</a>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-                <a href="signup.php" style="color:yellow;">Sign Up</a>
+                <div style="display: flex;flex-direction: row;">
+                    <div><a href="#forgot" style="color:yellow;">Forgot Password</a></div>
+                    <div style="margin-left:56%;"><a href="signup.php" style="color:yellow;">Sign Up</a></div>
+                </div>
             </form>
         </div>
     </div>

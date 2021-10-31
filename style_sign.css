@@ -1,0 +1,92 @@
+h2{
+    margin-bottom: 5px;
+    font-size: 50px;
+    color: white;
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.SignUP input{
+    padding: 10px;
+    margin: 10px;
+    width: auto;
+    height: 45px;
+    box-shadow: none;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 800;
+    font-size: 18px;
+    border-radius: 5px;
+    border: 1px solid black;
+    width:60%;
+}
+
+body{
+    background-size: cover;
+    background-image: linear-gradient(170deg,rgb(59, 59, 238), white);
+}
+
+.SignUP input{
+    display: block;
+}
+
+span{
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 17px;
+}
+
+form{
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 17px;
+    font-weight: 700;
+}
+h3{
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 20px;
+    font-weight: none;
+}
+
+#login_details,#userinfo{
+    background-color: teal;
+    background-image: linear-gradient(170deg, teal, rgb(85, 85, 231));
+    border: 1.5px solid black;
+    margin-left: 2%;
+    margin-right: 2%;
+    width: 42%;
+    padding: 1%;
+    border-radius: 5px;
+}
+
+.SignUP{
+    margin: auto;
+    padding: 20px;
+    color: white;
+    margin-top: 5px;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+
+#Sign_up{
+    margin:auto;
+    margin-left: 45%;
+    margin-right: 34%;
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+    border: 1px solid white;
+    font-size: 20px;
+    font-weight: 600;
+    padding: 0.5%;
+    width:10%;
+    height: 7.5%;
+    color: white;
+    border-radius: 5px;
+    background-color: teal;
+    cursor: pointer;
+}
+
+#Sign_up:hover{
+    background-color: rgb(75, 35, 187);
+    color: white;
+    transition: 0.3s;
+}

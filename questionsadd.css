@@ -7,7 +7,7 @@
     background-color: rgba(115, 115, 255, 0.774);
     border: black solid 2px;
 }
-body
+
 
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
@@ -29,4 +29,49 @@ h1{
     width: 98%;
     margin: auto;
 }
+.form{
+    max-width: 500px;
+    /* background-color: gray; */
+}
+.x{
+    max-width: 500px;
+    width: 500px;
 
+    background-color: rgb(96, 219, 228);
+    border: solid 2px black;
+    
+  
+       
+
+
+
+}
+body{
+    display: flex;
+    justify-content: center;
+    position: relative;
+    height: 100%;
+    background: linear-gradient(90deg, #4b6cb7 0%, #182848 100%);
+}
+.form{
+    display: flex;
+    justify-content: center;
+}
+.a{
+    font-size: large;
+}
+.a input{
+    padding: 5px;
+}
+#submit{
+    padding: 5px 0px;
+    width: 300px;
+    
+}
+.submit{
+    text-align: center;
+}
+input{
+    width: 450px;
+
+}

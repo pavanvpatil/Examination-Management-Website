@@ -21,9 +21,11 @@ body{
    height: 20rem;
    margin-left: 5%;
 }
-.qnp{
-    width: 65%;
+.edits{
+    text-align: right;
+
 }
+
 
 .buttonHolder{
     display: flex;
@@ -66,16 +68,18 @@ h1{
 
 }
 .Qcontainer{
+    margin: auto;
+    margin-bottom: 30px;
     width: 65%;
     box-sizing: border-box;
-    min-height: 22rem;
+    /* min-height: 22rem; */
     font-family: 'Source Sans Pro', sans-serif;
     font-weight: bold;
     background-color: rgb(250, 240, 225);
     box-shadow: 5px 5px 25px black;
-    position: absolute;
+    /* position: absolute;
     top: 15rem;
-    left: 5rem;
+    left: 5rem; */
     padding: 1.5rem;
     box-sizing: border-box;
     border-radius: 20px;
@@ -126,11 +130,7 @@ input[type='radio']:checked:after {
     background-color: rgb(255, 226, 182)!important;
     color: white;
 }
-#grandp{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-}
+
 .reviewButton{
     padding: 10px;
     margin: 10px;

@@ -1,11 +1,13 @@
-#logo{
-  position: absolute;
-  top: 2%;
-  left: 19%;
+.logo_title{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    margin-bottom:-5%;
 }
+
 #title{
-    /*display: inline;*/
     font-size: 130px;
+    font-family: 'Courier New', Courier,monospace;
 }
 h1{
     margin-top: 0px;
@@ -24,16 +26,16 @@ h2{
     text-shadow: 4px 4px 4px black;
 }
 .Login{
-    border-radius: 10px;
-    margin-left: 1%;
-    float: left;
+    border-radius: 5px;
+    border: 0.5px solid black;
+    margin-left: 3%;
     padding: 20px;
     height: 336px;
-    max-width: 500px;
+    width: 33%;
+    margin-right: 2%;
     background-color: teal;
     background-image: linear-gradient(170deg, teal, rgb(85, 85, 231));
     color: antiquewhite;
-    margin-bottom: 30px;
 }
 .SignUP{
     border-radius: 30px;
@@ -54,9 +56,13 @@ input{
     padding: 10px;
     margin: 10px;
     width: 77.5%;
-    height: 1cm;
-    border-radius: 10px;
-    box-shadow: 3px 3px 5px black;
+    height: 45px;
+    box-shadow: none;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 800;
+    font-size: 18px;
+    border-radius: 5px;
+    border: 1px solid black;
 }
 .SignUP input{
     width: 300px;
@@ -64,18 +70,20 @@ input{
     margin-bottom: 10px;
 }
 button,#log{
-    border: none;
+    border: 1px solid white;
     font-size: 20px;
     margin: 5px;
     padding: 5px;
-    width: 50%;
-    border-radius: 5px;
-    background-color: rgb(215, 250, 250);
-    box-shadow: 4px 4px 5px black;
+    width: 40%;
+    height: 12.5%;
+    color: white;
+    border-radius: 20px;
+    background-color: teal;
+    box-shadow: none;
     cursor: pointer;
 }
 button:hover,#log:hover{
-    background-color: green;
+    background-color: rgb(177, 187, 35);
     color: white;
     transition: 0.5s;
 }
@@ -86,8 +94,9 @@ button:hover,#log:hover{
     text-align: center;
 }
 body{
-    background-image: url("trianglify-lowres.png");
+   /* background-image: url("trianglify-lowres.png");*/
     background-size: cover;
+    background-image: linear-gradient(170deg,rgb(166, 239, 252), rgb(243, 247, 247));
 }
 #bgm{
     margin-left: 1%;
@@ -105,8 +114,9 @@ body{
 .key{
     width: 400px;
 }
+
 .container{
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
+    flex-direction: row;
+    justify-content: center;
 }

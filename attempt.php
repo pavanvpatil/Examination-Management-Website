@@ -1,23 +1,13 @@
 <?php
     session_start();
-    $email=$_SESSION['mail'];
-    if(!isset($_SESSION['loggedin']))
-    {
-        header("Location: index.php");
-    }
-    $connect=mysqli_connect("localhost","root","","userInfo");
-    $sql="SELECT * FROM usertable WHERE uGmail='$email'";
-    $result=mysqli_query($connect,$sql);
-    $row = $result->fetch_assoc();
-    $username=$row['uName'];
-
-    $conn = mysqli_connect("localhost", "root", "", "userInfo");
-    $sqlQuery = "SELECT * FROM quizes";
-    $result = mysqli_query($conn, $sqlQuery);
+    $username = $_SESSION['user'];
+    $connect = mysqli_connect("localhost", "root", "", $username);
+    $sql = "SELECT * FROM reg_quizes; ";
+    $result = mysqli_query($connect, $sql);
     $data = mysqli_fetch_all($result, MYSQLI_ASSOC);
 ?>
 <head>
-    <title>Register</title>
+    <title>Attempt a quiz</title>
     <link rel="stylesheet" href="register.css">
     <style>
       body{
@@ -64,31 +54,29 @@
     </style>
 </head>
 <body>
-<div class="topnav">
-            <a href="homepage.php">🏠Home</a>
-            <a href="contact.php">📞Contact</a>
-            <a href="about.php">📚About</a>
-            <a href="viewprofile.php">👨‍🎓Profile</a>
-            <a href="logout.php">🚪Logout</a>
-            <div align="right" id="log_img">
-            <img src="login_icon.jpg" alt="no image found" id="login_icon"><br>
-            <span style="font-size:15px;color:blue;"><?php echo "$username"; ?></span>
-            </div>
-        </div>
-    <h1 id="heading">Quizes available for registration</h1>
+    <div class="topnav">
+    <a href="homepage.php">🏠Home</a>
+    <a href="contact.php">📞Contact</a>
+    <a href="about.php">📚About</a>
+    <a href="viewprofile.php">👨‍🎓Profile</a>
+    <a href="logout.php">🚪Logout</a>
+    <div align="right" id="log_img">
+        <img src="login_icon.jpg" alt="no image found" id="login_icon"><br>
+        <span style="font-size:15px;color:blue;"><?php echo "$username"; ?></span>
+    </div> 
+    </div>
+    <h1 id="heading">Quizes available for attempt</h1>
     <div id="container"></div>
     <form action="homepage.php">
       <div style="display: flex; justify-content:center; margin: 3%;">
         <button class="btn" style="float: none" type="submit">Back</button>
       </div>
     </form>
-  
-   
     <script>
         var y = document.getElementById("container");
         <?php for($i = 0; $i < sizeof($data); $i++) { ?>
             var form = document.createElement("form");
-            form.action = "reg_quiz.php"
+            form.action = "#";
             form.method = "POST";
             var quizBody = document.createElement("div");
             var heading = document.createElement("h2");
@@ -102,13 +90,13 @@
             button.type = "submit";
             var quizDate = document.createElement("h2");
 
-            heading.innerHTML = "Quiz name: <br> "+"<?= $data[$i]['name'] ?>";
-            startTime.innerHTML = "Start time(24hrs format): <br> "+"<?= $data[$i]['start time'] ?>";
-            endTime.innerHTML = "End time(24hrs format): <br> "+"<?= $data[$i]['end time'] ?>";
-            hostName.innerHTML = "Host name: <br> "+"<?= $data[$i]['host-Email'] ?>";
+            heading.innerHTML = "Quiz name: <br> "+"<?= $data[$i]['q_name'] ?>";
+            startTime.innerHTML = "Start time(24hrs format): <br> "+"<?= $data[$i]['starttime'] ?>";
+            endTime.innerHTML = "End time(24hrs format): <br> "+"<?= $data[$i]['endtime'] ?>";
+            hostName.innerHTML = "Host name: <br> "+"<?= $data[$i]['host'] ?>";
             id.innerHTML = "Quiz ID: <br> "+"<?= $data[$i]['id'] ?>";
-            button.innerHTML = "Register";
-            quizDate.innerHTML = "Date of conduct: <br> "+"<?= $data[$i]['date'] ?>";
+            button.innerHTML = "Attempt";
+            quizDate.innerHTML = "Date of conduct: <br> "+"<?= $data[$i]['q_date'] ?>";
 
             quizBody.className = "quizContainer";
             heading.className = "heading";

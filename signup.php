@@ -1,3 +1,38 @@
+<head>
+    <title>Compete</title>
+    <link rel="stylesheet" href="style_sign.css">
+    <link rel="icon" href="Extra/letter_q.png">
+</head>
+
+<div id="layout"></div>
+     <div id="dlgbox">
+         <div id="head">Compete</div>
+         <div id="body">Username or Email Already Exists</div>
+         <div id="footer"><button onclick="ok()">OK</button></div>
+     </div>
+<script type="text/javascript">
+        function ok()
+        {
+            var whitebg = document.getElementById("layout");
+            var dlg = document.getElementById("dlgbox");
+            whitebg.style.display = "none";
+            dlg.style.display = "none";
+        }
+        function ALERT()
+        {
+            var whitebg = document.getElementById("layout");
+            var dlg = document.getElementById("dlgbox");
+            whitebg.style.display = "block";
+            dlg.style.display = "block";
+            
+            var winWidth = window.innerWidth;
+            var winHeight = window.innerHeight;
+            
+            dlg.style.left = (winWidth/2) - 300/2 + "px";
+            dlg.style.top = "150px";
+        }
+</script>
+
 <?php 
     $nameerror=$ageerror=$inerror=$emailerror=$passerror=$cpasserror=$perror="";
     $Username=$cpassword=$password="";
@@ -66,11 +101,11 @@
             $result1= $conn1->query($sql);
             if($result->num_rows>0)
             {
-                echo "<script>alert('Username Already exists')</script>";
+                echo '<script type="text/javascript">ALERT()</script>';
             }
             else if($result1->num_rows>0)
             {
-                echo "<script>alert('Email Already exists')</script>";
+                echo '<script type="text/javascript">ALERT()</script>';
             }      
             else
             {
@@ -102,30 +137,6 @@
         }
     }
 ?>
-
-<head>
-    <title>Compete</title>
-    <link rel="stylesheet" href="style_sign.css">
-    <link rel="icon" href="Extra/letter_q.png">
-   <!-- <style>
-        ::-webkit-scrollbar {
-            width: 20px;
-        }
-        ::-webkit-scrollbar-track {
-            box-shadow: inset 0 0 5px grey; 
-            border-radius: 3rem;
-            background: #F2F3F3;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #024F9F; 
-            border-radius: 2rem;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #2339CD;
-            transition: 1s; 
-        }
-    </style> -->
-</head>
 <body>
     <h2>SignUp</h2>
         <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">

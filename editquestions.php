@@ -4,9 +4,7 @@
     <?php
 
     session_start();
-    $_SESSION['qname']= "xyz";
-    $_SESSION['host']='anandishegde@gmail.com';
-    $database = $_SESSION['host'];
+    $database = $_SESSION['user'];
     $connection = mysqli_connect("localhost", "root", "", "$database");
     $tablename= $_SESSION['qname'];
     $query = "SELECT * FROM `$database`.`" .$tablename.'`';
@@ -21,7 +19,7 @@
     <link rel="stylesheet" href="editquestions.css">    
 </head>
 <body>
-<h1 style="text-align: center;">Quiz Name</h1>
+<h1 style="text-align: center;" id='quizname'>Quiz Name</h1>
     <button onclick="saveall()">Save All</button>
     <div id="grandp">
         <div id="qnp">
@@ -31,7 +29,7 @@
         <input type="number" name="editb" id="editb">
     </form>
 <script>
-    
+        document.getElementById("quizname").innerHTML="<?=$tablename?>";
         let parent = document.getElementById("parent");
         let x= <?= $noOfQuestions?>;
         let i1 = 1;
@@ -133,7 +131,8 @@
     }
     function saveall()
     {
-        <?php unset($_SESSION['qname']); ?>
+       <?php unset($_SESSION['qname']);
+        unset($_SESSION['host']); ?>
         location.replace("index.php");
     
     }

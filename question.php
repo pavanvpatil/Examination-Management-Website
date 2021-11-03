@@ -67,6 +67,7 @@
     {
         echo "eroor creating database";
     }
+   
     
     
     mysqli_query($conn, $sqlQuery);
@@ -88,6 +89,7 @@
     $stime= $_POST['qstime'];
     $etime=$_POST['qetime'];
     $date= $_POST['qdate'];
+    // $_SESSION['qname']= $name;
      
      
     $start_date = new DateTime("2007-09-01 $stime");

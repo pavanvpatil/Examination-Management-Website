@@ -19,7 +19,102 @@
     {
         header("Location: question.php");
     }    
-    ?>
+    // echo $_SESSION['qname'];
+    
+
+
+
+if(isset($_POST['done']))
+{
+    // unset($_SESSION['edit']);
+    $conn = mysqli_connect('localhost', 'root', '');
+    $username= $_SESSION['user'];
+    $sqlQuery = "CREATE DATABASE IF NOT EXISTS `$username` ;";
+    mysqli_query($conn,$sqlQuery);
+    $conn1 = mysqli_connect('localhost', 'root', '', "$username");
+    $tablename= $_SESSION['qname'];
+    
+    $sql= "CREATE TABLE IF NOT EXISTS `$username`.`".$tablename.
+    '`( `question` VARCHAR(1200) NOT NULL ,
+    `no` INT NOT NULL AUTO_INCREMENT , 
+    `option1` VARCHAR(200) NOT NULL , 
+    `option2` VARCHAR(200) NOT NULL , 
+    `option3` VARCHAR(200) NOT NULL , 
+    `option4` VARCHAR(200) NOT NULL , 
+    `option5` VARCHAR(200) NOT NULL , 
+    `correct_option` TINYINT NOT NULL ,
+    `no_of_options` TINYINT NOT NULL , 
+    PRIMARY KEY (`no`)) ENGINE = InnoDB;';
+    $question= $_POST['question'];
+    $conn1->query($sql);
+
+    $sql= "CREATE TABLE IF NOT EXISTS `$username`.`".$tablename.'responses`(
+        `username` VARCHAR(200) NOT NULL,
+        `no` INT NOT NULL AUTO_INCREMENT , PRIMARY KEY (`no`)) ENGINE= InnoDB;';
+    $conn1->query($sql);
+    $response= $tablename."responses";
+
+    $x= $_POST['x'];
+    $options= [];
+    for($i=1;$i<=$x;$i++)
+    {
+        $opt= "option".$i;  
+        $options[$i-1]= $_POST[$opt];    
+    }  
+    for($i=((int)$x)+1;$i<=5;$i++)
+    {
+        
+        $options[$i-1]='';
+    } 
+    $correct= $_POST['correct-option'];
+    if(!isset($_SESSION['edit']))
+    {
+        $sql="INSERT INTO `$tablename` (`question`,`option1`, `option2`, `option3`, `option4`, `option5`, `correct_option`, `no_of_options`)
+        VALUES ('$question',  '$options[0]', '$options[1]','$options[2]','$options[3]',' $options[4]','$correct ',' $x');";
+        
+        if ($conn1->query($sql) === TRUE) {
+            $last_id = $conn1->insert_id;
+        } else {
+            echo "Error: " . $sql . "<br>" . $conn1->error;
+        }
+        echo $last_id;
+        //  $sql= " SELECT `no` FROM `$tablename` ORDER BY `no` DESC LIMIT 1";
+        //  $result= $conn1->query($sql);
+        //  $sie= mysqli_fetch_assoc($result);
+        
+        //  echo $sie["no"];
+        $sql= "ALTER TABLE `$response`
+        ADD `$last_id` INT";
+        $conn1->query($sql);
+    }
+    else
+    {
+        $j= $_POST['j'];
+        $j++;
+
+        $sql= "UPDATE 
+            `$tablename`
+        SET 
+            `question` ='$question',
+            `option1`='$options[0]',
+            `option2`='$options[1]',
+            `option3`='$options[2]', 
+            `option4`='$options[3]' , 
+            `option5`='$options[4]', 
+            `correct_option`='$correct', 
+            `no_of_options`='$x' 
+        WHERE 
+            `no` = $j;";
+        if(!$conn1->query($sql))
+        {
+            echo $conn1->error;
+        }
+        unset($_SESSION['edit']);
+    }
+}
+    
+?>
+    
 
 
     <div class="content">
@@ -49,6 +144,7 @@
         <div class="submit">
         <input type="submit" value="add" name="done" id="done" disabled>
         </div>
+        <button onclick="preview()">Preview added questions</button>
     </form>
     </div>
    
@@ -62,8 +158,8 @@ var x;
 $edit= 0;
 if(isset($_SESSION['edit']))
 {
-    $_SESSION['qname']= "xyz";
-    //echo $_SESSION['qname'];
+  
+    
     $_SESSION['host']=$_SESSION['user'];
     $database = $_SESSION['host'];
     $connection = mysqli_connect("localhost", "root", "", "$database");
@@ -98,10 +194,16 @@ if(isset($_SESSION['edit']))
     <?php
     }
 
-    unset($_SESSION['edit']);
+    // unset($_SESSION['edit']);
     
 }
 ?>
+
+function preview()
+{
+    window.location.href="editquestions.php";
+}
+
 function give_option_blanks()
 {
 
@@ -201,95 +303,5 @@ function give_option_blanks1(x)
     </script>
 
 
-<?php
-
-if(isset($_POST['done']))
-{
-    unset($_SESSION['edit']);
-    $conn = mysqli_connect('localhost', 'root', '');
-    $username= $_SESSION['user'];
-    $sqlQuery = "CREATE DATABASE IF NOT EXISTS `$username` ;";
-    mysqli_query($conn,$sqlQuery);
-    $conn1 = mysqli_connect('localhost', 'root', '', "$username");
-    $tablename= $_SESSION['qname'];
-    $sql= "CREATE TABLE IF NOT EXISTS `$username`.`".$tablename.
-    '`( `question` VARCHAR(1200) NOT NULL ,
-    `no` INT NOT NULL AUTO_INCREMENT , 
-    `option1` VARCHAR(200) NOT NULL , 
-    `option2` VARCHAR(200) NOT NULL , 
-    `option3` VARCHAR(200) NOT NULL , 
-    `option4` VARCHAR(200) NOT NULL , 
-    `option5` VARCHAR(200) NOT NULL , 
-    `correct_option` TINYINT NOT NULL ,
-    `no_of_options` TINYINT NOT NULL , 
-    PRIMARY KEY (`no`)) ENGINE = InnoDB;';
-    $question= $_POST['question'];
-    $conn1->query($sql);
-
-    $sql= "CREATE TABLE IF NOT EXISTS `$username`.`".$tablename.'responses`(
-        `username` VARCHAR(200) NOT NULL,
-        `no` INT NOT NULL AUTO_INCREMENT , PRIMARY KEY (`no`)) ENGINE= InnoDB;';
-    $conn1->query($sql);
-    $response= $tablename."responses";
-
-    $x= $_POST['x'];
-    $options= [];
-    for($i=1;$i<=$x;$i++)
-    {
-        $opt= "option".$i;  
-        $options[$i-1]= $_POST[$opt];    
-    }  
-    for($i=((int)$x)+1;$i<=5;$i++)
-    {
-        
-        $options[$i-1]='';
-    } 
-    $correct= $_POST['correct-option'];
-    if($edit)
-    {
-        $sql="INSERT INTO `$tablename` (`question`,`option1`, `option2`, `option3`, `option4`, `option5`, `correct_option`, `no_of_options`)
-        VALUES ('$question',  '$options[0]', '$options[1]','$options[2]','$options[3]',' $options[4]','$correct ',' $x');";
-        
-        if ($conn1->query($sql) === TRUE) {
-            $last_id = $conn1->insert_id;
-        } else {
-            echo "Error: " . $sql . "<br>" . $conn1->error;
-        }
-        echo $last_id;
-        //  $sql= " SELECT `no` FROM `$tablename` ORDER BY `no` DESC LIMIT 1";
-        //  $result= $conn1->query($sql);
-        //  $sie= mysqli_fetch_assoc($result);
-        
-        //  echo $sie["no"];
-        $sql= "ALTER TABLE `$response`
-        ADD `$last_id` INT";
-        $conn1->query($sql);
-    }
-    else
-    {
-        $j= $_POST['j'];
-        $j++;
-        $sql= "UPDATE 
-            `$tablename`
-        SET 
-            `question` ='$question',
-            `option1`='$options[0]',
-            `option2`='$options[1]',
-            `option3`='$options[2]', 
-            `option4`='$options[3]' , 
-            `option5`='$options[4]', 
-            `correct_option`='$correct', 
-            `no_of_options`='$x' 
-        WHERE 
-            `no` = $j;";
-        if(!$conn1->query($sql))
-        {
-            echo $conn1->error;
-        }
-        unset($_SESSION['edit']);
-    }
-}
-    
-?>
 </body>
 </html>

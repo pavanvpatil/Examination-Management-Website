@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="SliderCode/slider-style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Compete</title>
     <style>
         #layout{
@@ -151,8 +152,8 @@
 ?>
     
     <div class="logo_title">
-        <img src="logo.png" alt="image not loaded" width=100px height=100px style="border-radius: 50%;margin-top: 1.8%;">
-        <h1 id="title">COMPETE</h1> 
+        <!-- <img src="logo.png" alt="image not loaded" width=100px height=100px style="border-radius: 50%;margin-top: 1.8%;"> -->
+        <h1 id="title" style="letter-spacing: 0.1rem;"></i><i class="fa-solid fa-arrow-trend-up" style="font-size: 80px; color: #2f3640; letter-spacing: 1rem"></i>COMPETE</h1>
     </div>
    <!-- <center><p id="errors"></p></center> -->
     <div class="container">
@@ -179,7 +180,11 @@
             <span class="button right" onclick="control(1)">&#10095</span>
         </div> 
         <div class="Login">
-            <div style="text-align:center;margin-bottom:6%" ><span style="font-size:40px;">Login User</span></div>
+        <div style="text-align:center;margin-bottom:6%" >
+                <span style="font-size:40px;">
+                    <i class="fa-solid fa-user-large"></i> Login User
+                <span>
+        </div>
             <form method="post"> <!--Login form-->
                  <div id="email">
                  <input type="text"  name="Email" placeholder="Email-Id"  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required><br>

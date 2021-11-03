@@ -28,6 +28,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="Extra/letter_q.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Compete</title>
 <style>
 body{
@@ -35,10 +36,13 @@ body{
   padding: 0rem;
   font-family: 'Courier New', Courier, monospace;
   font-weight:600;
+  background-image: linear-gradient(170deg,rgb(243, 247, 247),rgb(166, 239, 252) );
 }
 .topnav {
   overflow: hidden;
-  background-color:#cfcccc;
+  /*background-color:#cfcccc;*/
+ /* background-image: linear-gradient(170deg,rgb(166, 239, 252),rgb(243, 247, 247) );*/
+ background-color:rgb(176, 237, 248);
   height: auto;
   width: auto;
   position: sticky;
@@ -69,6 +73,10 @@ body{
   padding-top: 8px;
   padding-right: 8px;
   cursor: pointer;
+  position: absolute;
+  top: 15%;
+  right: 1%;
+
 }
 
 .flex-container {
@@ -86,7 +94,7 @@ body{
     margin-right: 10px;
     margin-left: 10px;
     width: 70%;
-    border-radius: 10px;
+    border-radius: 4px;
     text-align: center;
 } 
 
@@ -95,21 +103,22 @@ body{
     margin-right: 10px;
     margin-left: 10px;
     width: 30%;
-    border-radius: 10px;
-    color:blue;
+    border-radius: 4px;
+    color:white;
     text-align: center;
+    background-image: linear-gradient(170deg, teal, rgb(85, 85, 231));
 }
 
 .flex-child2 a{
-  border:2px solid black;
-  color:darkblue;
+  border:1.5px solid white;
+  color:black;
   text-decoration: none;
   border-radius: 5px;
   padding: 2%;
-  width: 40%;
+  width: 42%;
   display: inline-block;
   font-size: 20px;
-  background-color: rgb(228, 226, 226);
+  background-color: rgb(166, 239, 252);
   margin-top: 2.5%;
   margin-bottom: 2.5%;
 }
@@ -131,8 +140,9 @@ body{
   width: 33.33%;
   margin-left: 10px;
   margin-right: 10px;
-  border-radius: 10px;
+  border-radius: 6px;
   text-align: center;
+  background-image: linear-gradient(170deg, teal, rgb(85, 85, 231));
 }
 
 .flex2{
@@ -140,8 +150,9 @@ body{
   width: 33.33%;
   margin-left: 10px;
   margin-right: 10px;
-  border-radius: 10px;
+  border-radius: 6px;
   text-align: center;
+  background-image: linear-gradient(170deg, teal, rgb(85, 85, 231));
 }
 
 .flex3{
@@ -149,22 +160,23 @@ body{
   width: 33.33%;
   margin-left: 10px;
   margin-right: 10px;
-  border-radius: 10px;
+  border-radius: 6px;
   text-align: center;
+  background-image: linear-gradient(170deg, teal, rgb(85, 85, 231));
 }
 
 </style>
 </head>
 <body>
 <div class="topnav">
-  <a href="homepage.php">🏠Home</a>
-  <a href="contact.php">📞Contact</a>
-  <a href="about.php">📚About</a>
-  <a href="viewprofile.php">👨‍🎓Profile</a>
-  <a href="logout.php">🚪Logout</a>
-  <div align="right" id="log_img">
-  <img src="login_icon.jpg" alt="no image found" id="login_icon"><br>
-  <span style="font-size:15px;color:blue;"><?php echo "$username"; ?></span>
+  <a style="font-size: 17px;" href="homepage.php"><i class="fa-solid fa-house-user"></i> Home</a>
+  <a style="font-size: 17px;" href="contact.php"><i class="fa-solid fa-phone"></i></i> Contact</a>
+  <a style="font-size: 17px;" href="about.php"><i class="fa-solid fa-book"></i> About</a>
+  <a style="font-size: 17px;" href="viewprofile.php"><i class="fas fa-user-alt"></i> Profile</a>
+  <a style="font-size: 17px;" href="logout.php"><i class="fas fa-power-off"></i> Logout</a>
+  <div  id="log_img">
+  <!-- <img src="login_icon.jpg" alt="no image found" id="login_icon"><br> -->
+  <span style="font-size:17px;color:blue;"><i class="fas fa-user-alt"></i> <?php echo "$username"; ?></span>
   </div> 
 </div>
 <div class="flex-container">
@@ -181,18 +193,19 @@ body{
 </div>
 <div class="flex-container2">
   <div class="flex1">
-    <h1>📝Quizzes</h1>
-    <h1 style="font-size: 100px; color: red;margin-top: -2%;"><?php echo sizeof($data) ?></h1>
+    <h1 style="color: white;"><i class="fa-solid fa-book-open"></i> Quizzes</h1>
+    <h1 style="font-size: 100px; color: white;margin-top: -2%;"><?php echo sizeof($data) ?></h1>
   </div>
   <div class="flex2">
-    <h1>✒️Quizzes Hosted</h1>
-    <h1 style="font-size: 100px; color: red;margin-top: -2%;">19</h1>
+    <h1 style="color: white;"><i class="fa-regular fa-pen-to-square"></i> Quizzes Hosted</h1>
+    <h1 style="font-size: 100px; color: white;margin-top: -2%;">19</h1>
   </div>
   <div class="flex3">
-    <h1>👨‍🎓Users</h1>
-    <h1 style="font-size: 100px; color: red;margin-top: -2%;"><?php echo "$no_of_users" ?></h1>
+    <h1 style="color: white;"><i class="fa-solid fa-users"></i> Users</h1>
+    <h1 style="font-size: 100px; color: white;margin-top: -2%;"><?php echo "$no_of_users" ?></h1>
   </div>
-</div><br><br>
+</div>
+<br><br>
 <hr>
 </body>
 </html>

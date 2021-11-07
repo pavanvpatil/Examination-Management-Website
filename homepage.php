@@ -7,6 +7,7 @@
     }
     $connect=mysqli_connect("localhost","root","","userInfo");
     $sql="SELECT * FROM usertable";
+    
     $result=mysqli_query($connect,$sql);
     $data = mysqli_fetch_all($result,MYSQLI_ASSOC);
     $no_of_users=sizeof($data);
@@ -15,6 +16,35 @@
     $row=$result->fetch_assoc();
     $username=$row['uName'];
     $_SESSION['user'] = $username;
+    $sql= "CREATE DATABASE IF NOT EXISTS `$username`";
+    $connq=mysqli_connect('localhost', 'root', '');
+    $connq->query($sql);
+
+
+    // $conn = mysqli_connect("localhost", "root", "",$username);
+    $sql= 'CREATE TABLE IF NOT EXISTS `userinfo`.`quizes` ( `id` INT NOT NULL AUTO_INCREMENT ,
+    `host` TEXT NOT NULL ,
+    `date` DATE NOT NULL , 
+    `start time` TIME NOT NULL , 
+    `end time` TIME NOT NULL , 
+    `duration` TIME NOT NULL ,
+    `name` TEXT NOT NULL , 
+    PRIMARY KEY (`id`)) ENGINE = InnoDB;';
+    $connect->query($sql);
+    $sql="SELECT * FROM quizes WHERE host='$username'";
+    $result=mysqli_query($connect,$sql);
+    $data1=mysqli_fetch_all($result,MYSQLI_ASSOC);
+    $no_of_quizes_hosted=sizeof($data1);
+
+    $sql= 'CREATE TABLE IF NOT EXISTS `userinfo`.`quizes` ( `id` INT NOT NULL AUTO_INCREMENT ,
+    `host` TEXT NOT NULL ,
+    `date` DATE NOT NULL , 
+    `start time` TIME NOT NULL , 
+    `end time` TIME NOT NULL , 
+    `duration` TIME NOT NULL ,
+    `name` TEXT NOT NULL , 
+    PRIMARY KEY (`id`)) ENGINE = InnoDB;';
+    $connect->query($sql);
 
     //no of quizes
     $sqlQuery = "SELECT * FROM quizes";
@@ -29,6 +59,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="Extra/letter_q.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="1.css">
+    <!-- <link rel="stylesheet" href="SliderCode/slider-style.css"> -->
     <title>Compete</title>
 <style>
 body{
@@ -39,14 +71,15 @@ body{
   background-image: linear-gradient(170deg,rgb(243, 247, 247),rgb(166, 239, 252) );
 }
 .topnav {
-  overflow: hidden;
-  /*background-color:#cfcccc;*/
- /* background-image: linear-gradient(170deg,rgb(166, 239, 252),rgb(243, 247, 247) );*/
- background-color:rgb(176, 237, 248);
+  overflow: hidden !important;
+  position: relative !important;
+  background-color:rgb(176, 237, 248);
   height: auto;
   width: auto;
-  position: sticky;
+  position: sticky !important;
   top: 0;
+  border: 1px solid black;
+  z-index: 100;
 }
 
 .topnav a {
@@ -83,26 +116,28 @@ body{
     display: flex;
     margin-top: 2%;
     width: auto;
-    justify-content: center;
+    justify-content: space-around;
     flex-direction: row;
     height: 350px;
     padding: 0.5%;
 }
 
 .flex-child1{
-    border: 2px solid black;
+    border: 0.8px solid black;
     margin-right: 10px;
     margin-left: 10px;
-    width: 70%;
-    border-radius: 4px;
+    width: 700px;
+    border-radius: 2px;
     text-align: center;
+    overflow: hidden;
+    z-index: -1;
 } 
 
 .flex-child2{
-    border: 2px solid black;
+    border: 0.8px solid black;
     margin-right: 10px;
     margin-left: 10px;
-    width: 30%;
+    width: 40%;
     border-radius: 4px;
     color:white;
     text-align: center;
@@ -110,12 +145,12 @@ body{
 }
 
 .flex-child2 a{
-  border:1.5px solid white;
+  border:0.8px solid white;
   color:black;
   text-decoration: none;
   border-radius: 5px;
-  padding: 2%;
-  width: 42%;
+  padding: 1.8%;
+  width: 36%;
   display: inline-block;
   font-size: 20px;
   background-color: rgb(166, 239, 252);
@@ -136,7 +171,7 @@ body{
 }
 
 .flex1{
-  border: 2px solid black;
+  border: 0.8px solid black;
   width: 33.33%;
   margin-left: 10px;
   margin-right: 10px;
@@ -146,7 +181,7 @@ body{
 }
 
 .flex2{
-  border: 2px solid black;
+  border: 0.8px solid black;
   width: 33.33%;
   margin-left: 10px;
   margin-right: 10px;
@@ -156,7 +191,7 @@ body{
 }
 
 .flex3{
-  border: 2px solid black;
+  border: 0.8px solid black;
   width: 33.33%;
   margin-left: 10px;
   margin-right: 10px;
@@ -164,7 +199,32 @@ body{
   text-align: center;
   background-image: linear-gradient(170deg, teal, rgb(85, 85, 231));
 }
-
+/*slider style code*/
+#prev{
+  position: absolute;
+  top:15rem;
+  left: 1.2rem;
+  cursor: pointer;
+  font-size: 1.6rem;
+  opacity: 90%;
+}
+#next{
+  position: absolute;
+  top: 15rem;
+  left: 40.5rem;
+  cursor: pointer;
+  font-size: 1.6rem;
+  opacity: 90%;
+}
+.s_slide{
+    width: 7700px;
+    height: 350px;
+    display: flex;
+}
+.img{
+    height: 100%;
+    width: 700px;
+}
 </style>
 </head>
 <body>
@@ -175,13 +235,23 @@ body{
   <a style="font-size: 17px;" href="viewprofile.php"><i class="fas fa-user-alt"></i> Profile</a>
   <a style="font-size: 17px;" href="logout.php"><i class="fas fa-power-off"></i> Logout</a>
   <div  id="log_img">
-  <!-- <img src="login_icon.jpg" alt="no image found" id="login_icon"><br> -->
   <span style="font-size:17px;color:blue;"><i class="fas fa-user-alt"></i> <?php echo "$username"; ?></span>
   </div> 
 </div>
 <div class="flex-container">
   <div class="flex-child1">
-    HERE WE WILL BE SLIDES OF QUIZ HOSTED BY OTHER USERS
+        <div class="s_slide">
+            <img  class="img" id="lastclone" src="sliderImages/6.jpeg" alt="">
+            <img  class="img" src="sliderImages/2.jpeg" alt="">
+            <img  class="img" src="sliderImages/4.jpeg" alt="">
+            <img  class="img" src="sliderImages/5.jpeg" alt="">
+            <img  class="img" src="sliderImages/7.jpeg" alt="">
+            <img  class="img" src="sliderImages/8.jpeg" alt="">
+            <img  class="img" src="sliderImages/9.jpeg" alt="">
+            <img  class="img" src="sliderImages/6.jpeg" alt="">
+            <img  class="img" id="firstclone" src="sliderImages/2.jpeg" alt="">
+        </div>
+    <script src="1.js"></script>
   </div>
   <div class="flex-child2">
     <h1 style="text-align: center;">QUIZ PANEL</h1>
@@ -198,7 +268,7 @@ body{
   </div>
   <div class="flex2">
     <h1 style="color: white;"><i class="fa-regular fa-pen-to-square"></i> Quizzes Hosted</h1>
-    <h1 style="font-size: 100px; color: white;margin-top: -2%;">19</h1>
+    <h1 style="font-size: 100px; color: white;margin-top: -2%;"><?php echo $no_of_quizes_hosted ?></h1>
   </div>
   <div class="flex3">
     <h1 style="color: white;"><i class="fa-solid fa-users"></i> Users</h1>
@@ -207,5 +277,6 @@ body{
 </div>
 <br><br>
 <hr>
+<script src="SliderCode/slider-script.js"></script>
 </body>
 </html>

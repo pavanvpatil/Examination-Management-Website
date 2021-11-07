@@ -131,8 +131,7 @@
     }
     function saveall()
     {
-       <?php unset($_SESSION['qname']);
-        unset($_SESSION['host']); ?>
+       
         location.replace("index.php");
     
     }

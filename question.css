@@ -1,0 +1,60 @@
+.Host_form{
+    display: flex;
+    flex-direction:column;
+    justify-content: center;
+    text-align: center;
+    border:1px solid black;
+    width:40%;
+    background-image: linear-gradient(170deg, teal, rgb(85, 85, 231));
+    border-radius: 5px;
+}
+input{
+    margin-top: 1%;
+    margin-bottom: 5%;
+    width: 60%;
+    height: 50%;
+    border-radius: 5px;
+    border:1px solid black;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 700;
+    font-size: 15px;
+}
+form{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+form div div{
+   margin-top: 1%;
+   font-size: 20px;
+   color: white;
+}
+
+#submit
+{
+    border: 1px solid white;
+    font-size: 20px;
+    padding: 5px;
+    width: 40%;
+    height: auto;
+    color: white;
+    background-color: teal;
+    box-shadow: none;
+    cursor: pointer;
+}
+
+#submit:hover{
+    background-color: rgb(75, 35, 187);
+    color: white;
+    transition: 0.5s;
+}
+
+body{
+    margin: 0rem;
+    padding: 0rem;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight:600;
+    background-image: linear-gradient(170deg,rgb(243, 247, 247),rgb(166, 239, 252) );
+    height: 100%;
+    width: 100%;
+}

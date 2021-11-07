@@ -1,50 +1,213 @@
 <?php 
     session_start();
-    
-    $_SESSION['qname']= "xyz";
-    $_SESSION['host']='anandishegde@gmail.com';
-    $database = $_SESSION['host'];
-    $connection = mysqli_connect("localhost", "root", "", "$database");
-    $tablename= $_SESSION['qname'];
-    $query = "SELECT * FROM `$database`.`" .$tablename.'`';
+    $hostName = $_SESSION['q_host_db'];
+    $tableName = $_SESSION['q_current_table'];
+    $connect = mysqli_connect("localhost", "root", "", $hostName);
+    $connection = mysqli_connect("localhost", "root", "", $hostName);
+    $query = "SELECT * FROM $tableName;";
     $result = mysqli_query($connection, $query);
     $questionSet = mysqli_fetch_all($result, MYSQLI_ASSOC);
     $noOfQuestions = sizeof($questionSet); 
+    $responses= $tableName."responses";
+    $user=$_SESSION['user'];
+    $sql= "SELECT * FROM `$responses`";
+    $result1= $connect->query($sql);
+    $res= $result1->fetch_assoc();
+   
+    if(isset($res['result']))
+    {
+        if($res['result']!=NULL)
+        {
+            header("Location: homepage.php");
+        }
+        
+    }
 
 
-    // $connection = mysqli_connect("localhost", "root", "", "dbname");
-    // $query = "SELECT * FROM tbname;";
-    // $result = mysqli_query($connection, $query);
-    // $questionSet = mysqli_fetch_all($result, MYSQLI_ASSOC);
-    // $noOfQuestions = sizeof($questionSet); 
-
-    // $connection = mysqli_connect("localhost", "root", "", "dbname");
-    // $query = "SELECT * FROM tbname;";
-    // $result = mysqli_query($connection, $query);
-    // $questionSet = mysqli_fetch_all($result, MYSQLI_ASSOC);
-    // $noOfQuestions = sizeof($questionSet); 
 ?>
 <head>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="display-questions.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+Antique:wght@300&display=swap" rel="stylesheet">
+    <style>
+        body{
+            background-image: linear-gradient(190deg,rgb(166, 239, 252),rgb(243, 247, 247) );
+            margin: 0px;
+        }
+        #output{
+            font-family: 'Source Sans Pro', sans-serif;
+            font-size: 1.4rem;
+            color: rgb(16, 1, 60);
+            position: absolute;
+            top: 5.4rem;
+            left: 12.2rem;
+            font-weight: bold;
+            color: red;
+        }
+        #navButtons{
+        position: absolute;
+        flex-wrap: wrap;
+        top: 10rem;
+        right: 2rem;
+        width: 25%;
+        height: 20rem;
+        margin-left: 5%;
+        }
+        .qnp{
+            width: 65%;
+        }
+
+        .buttonHolder{
+            display: flex;
+            justify-content: space-between;
+            position: absolute;
+            top: 32.5rem;
+            left: 15.5rem;
+        }
+        .controls{
+            padding: 0.7rem;
+            margin: 0.7rem;
+            font-size: 1.0rem;
+            font-weight: 600;
+            text-align: center;
+            font-family: 'Zen Kaku Gothic Antique', sans-serif;
+            border: 1px solid black;
+            color: white;
+            background-color: teal;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+        .controls:hover{
+            color: rgb(236, 236, 236);
+            transition: 0.4s;
+            background-color: rgb(30, 96, 36);
+        }
+        .options{
+            font-size: 20px;
+            padding-left: 15px;
+            color: white;
+        }
+        .question{
+            font-size: 30px;
+            margin-bottom: 10px;
+            color: white;
+        }
+        h1{
+            font-family: 'Source Sans Pro', sans-serif;
+            font-size: 4rem;
+            transform: scale(1.1, 1);
+            color: #20546d;
+            text-shadow:6px 6px 40px rgb(57, 130, 154);
+            text-align: center;
+            margin: 0rem;
+
+        }
+        .Qcontainer{
+            width: 65%;
+            box-sizing: border-box;
+            min-height: 22rem;
+            font-family: 'Zen Kaku Gothic Antique', sans-serif;
+            font-weight: bold;
+            background-image: linear-gradient(170deg, teal, rgb(85, 85, 231));;
+            position: absolute;
+            top: 10rem;
+            left: 2.2rem;
+            padding: 1.5rem;
+            box-sizing: border-box;
+            border-radius: 6px;
+            border: 0.8px solid black;
+        }
+        input[type='radio']:after {
+            width: 15px;
+            height: 15px;
+            border-radius: 15px;
+            top: -2px;
+            left: -1px;
+            position: relative;
+            background-color: #d1d3d1;
+            content: '';
+            display: inline-block;
+            visibility: visible;
+            border: 2px solid white;
+        }
+        input[type='radio']:checked:after {
+            width: 18px;
+            height: 18px;
+            border-radius: 18px;
+            top: -2px;
+            left: -1px;
+            position: relative;
+            background-color: green;
+            content: '';
+            display: inline-block;
+            visibility: visible;
+            border: 2px solid white;
+        }
+        .opdiv{
+            padding: 8px;
+        }
+        .navButton{
+            width: 3.2rem;
+            height: 3.2rem;
+            font-size: 1.5rem;
+            padding: 0.3rem;
+            margin: 0.2rem;
+            color: teal;
+            background-color: rgb(250, 240, 225);
+            opacity: 70%;
+            border: 0.8px solid black;
+            border-radius: 2px;
+        }
+        .navButton:hover{
+            transition: 0.5s;
+            background-color: rgb(255, 226, 182)!important;
+            color: black !important;
+        }
+        #grandp{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+        }
+        .reviewButton{
+            text-align: center;
+            font-family: 'Zen Kaku Gothic Antique', sans-serif;
+            border: 1px solid black;
+            color: white;
+            background-color: teal;
+            cursor: pointer;
+            border-radius: 3px;
+            position: absolute;
+            font-size: 1.1rem;
+            top: 5.5rem;
+            left: 1.8rem;
+            padding: 0.6rem;
+            margin: 0.6rem;
+            font-weight: 600;
+        }
+        .reviewButton:hover{
+            color: rgb(236, 236, 236);
+            transition: 0.4s;
+            background-color: rgb(30, 96, 36);
+        }
+        #parent{
+            margin-right: 2%;
+        }
+    </style>
 </head>
 <body>
-    <h1 style="text-align: center;">Quiz Name</h1>
+    <h1 style="text-align: center; font-size: 2.8rem;"><?php echo "Quiz name: ".$tableName?></h1>
     <div id="grandp">
         <div id="qnp">
-            
-
-
-            
-            <div id="parent"></div>    <!--done-->
+            <div id="parent"></div>
             <div class="buttonHolder">
-            <form action="Submit.php" method="post" id="form"></form> <!--done -->
-                <button class="controls" onclick="previous()">Previous</button>
-                <button class="controls" onclick="reset()">reset</button>
-                <button class="controls" onclick="next()">Next</button>
-                <button class="controls submit" onclick="submit()">Submit</button>
+                <form action="Submit.php" method="post" id="form"></form>
+                <button class="controls" onclick="previous()">PREVIOUS</button>
+                <button class="controls" onclick="reset()">RESET</button>
+                <button class="controls" onclick="next()">NEXT</button>
+                <button class="controls submit" onclick="submit()">SUBMIT</button>
             </div>
         </div>
         <div id="navButtons"></div>
@@ -56,7 +219,7 @@
         let parent = document.getElementById("parent");
         let x= <?= $noOfQuestions?>;
         let i1 = 1;
-    <?php for( $i=0; $i< $noOfQuestions ; $i++){ ?>
+        <?php for( $i=0; $i< $noOfQuestions ; $i++){ ?>
         var form = document.getElementById("form");
         var questionBody = document.createElement("div");
         questionBody.className = "Qcontainer";
@@ -95,11 +258,6 @@
         option2.name = "circle"+i1;
         option3.name = "circle"+i1;
         option4.name = "circle"+i1;
-        // option1.id='1';
-        // option2.id='2';
-        // option3.id='3';
-        // option4.id='4';
-
         if("<?= $questionSet[$i]['option1'] ?>"!=''){
             divop1.appendChild(option1);
             o1.innerHTML = "A. "+ "<?= $questionSet[$i]['option1'] ?>";
@@ -133,7 +291,7 @@
         questionBody.appendChild(divop4);
         form.appendChild(ans);
         parent.appendChild(questionBody);
-    <?php }?>
+        <?php }?>
         let questionArray = document.getElementById("parent").childNodes;
         for(let i=1; i<=questionArray.length-1; i++){
             questionArray[i].style.display = "none";
@@ -166,11 +324,6 @@
                         currentGreen();
                     }
                 }
-                // if(value === 0){
-                //     currentRed();
-                // }else{
-                //     currentGreen();
-                // }
                 questionArray[i].style.display = "none";
                 questionArray[j-1].style.display = "block";
                 i = j-1;
@@ -178,8 +331,9 @@
             })
             buttonsParent.appendChild(y);
         }
-
+        var clicked= false;
         function submit(){
+             clicked= true;
             var z=0;
             let values= new Array(x+1);
             for(z=1;z<=x;z++)
@@ -202,9 +356,6 @@
             form.submit();
             }    
         }
-        
-
-
         currentBlue();
         function next(){
             let value=0;
@@ -316,7 +467,6 @@
             i++;
             currentBlue();
         }
-
         function currentBlue(){
             let navButtons = document.getElementById("navButtons");
             let buttonArray = navButtons.childNodes;
@@ -354,9 +504,28 @@
             buttonArray[i].style.background = "rgb(250, 240, 225)";
             buttonArray[i].style.color = "teal";
         }
-        var time = 600; 
+        <?php
+        date_default_timezone_set('asia/kolkata');
+        $stime= date("H:i:s");
+        echo "console.log('$stime');";
+        
+        $etime= $_SESSION['q_end_time'];
+        $seconds= 0;
+        $start= strtotime($stime);
+        $end= strtotime($etime);
+        echo "console.log('$etime');";
+        $seconds= $end- $start;
+        echo "console.log('$seconds');";
+        ?>
+        var time = <?=$seconds?> 
         var output = document.getElementById("output")
         function display(){
+            if(time<=0)
+            {
+                submit();
+            }
+
+
             if(time == 0){
                 clearInterval(event);
             }
@@ -371,7 +540,19 @@
             output.innerHTML = "Time left : "+min+":"+sec;
             time--;
         }
-        let event = setInterval(display, 1000);
+        let event = setInterval(display, 1000);      
     </script>
+    <script>
+        console.log(clicked);
+
+window.onbeforeunload = function(event) {
+    alert("hello");
+    if(!clicked)
+    {
+        event.returnValue = "Write something clever here..";
+    }
+  
+};
+</script>
 </body>
 

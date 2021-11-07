@@ -12,18 +12,36 @@
     $username=$row['uName'];
     $institute=$row['uInstitute'];
 ?>
-<!DOCTYPE html>
-<html>
-    <head>
+<link rel="icon" href="Extra/letter_q.png">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<div class="topnav">
+      <a style="font-size: 17px;" href="homepage.php"><i class="fa-solid fa-house-user"></i> Home</a>
+      <a style="font-size: 17px;" href="contact.php"><i class="fa-solid fa-phone"></i></i> Contact</a>
+      <a style="font-size: 17px;" href="about.php"><i class="fa-solid fa-book"></i> About</a>
+      <a style="font-size: 17px;" href="viewprofile.php"><i class="fas fa-user-alt"></i> Profile</a>
+      <a style="font-size: 17px;" href="logout.php"><i class="fas fa-power-off"></i> Logout</a>
+      <div  id="log_img">
+      <span style="font-size:17px;color:blue;"><i class="fas fa-user-alt"></i> <?php echo "$username"; ?></span>
+      </div> 
+</div>
+        <h1 style="text-align: center;font-family: 'Courier New', Courier, monospace;">User Profile</h1>
+        <div class="container">
+        <div class="profile_container">
+            <div style="text-align:center;"><span><i class="fa-solid fa-user-large"></i> Username</span><br><br><span><?php echo "$username";?></span></div>
+            <div style="text-align:center;"><span><i class="fa fa-university" aria-hidden="true"></i> Institute</span><br><br><span><?php echo "$institute";?></span></div>
+            <div style="text-align:center;"><span><i class="fa fa-envelope" aria-hidden="true"></i> Email-ID</span><br><br><span><?php echo "$email"?></span></div>
+        </div>
+       </div>
+<head>
         <title>Compete</title>
-        <link rel="icon" href="Extra/letter_q.png">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <style>
-            body{
+<style>
+body{
   margin: 0rem;
   padding: 0rem;
   font-family: 'Courier New', Courier, monospace;
   font-weight:600;
+  background-image: linear-gradient(170deg,rgb(243, 247, 247),rgb(166, 239, 252) );
 }
 .topnav {
   overflow: hidden;
@@ -32,6 +50,7 @@
   width: auto;
   position: sticky;
   top: 0;
+  border: 1px solid black;
 }
 
 .topnav a {
@@ -61,49 +80,28 @@
   position: absolute;
   top: 15%;
   right: 1%;
-
 }
-            .container{
-                display: flex;
-                justify-content: center;
-                direction: row;
-            }
-            .profile_container{
-                border: 2px solid black;
-                border-radius: 5px;
-                min-width: 60%;
-                max-width: 100%;
-                padding:1%;
-            }
-            .profile_container div{
-                border: 1px solid black;
-                font-family: 'Courier New', Courier, monospace;
-                font-size: 25px;
-                font-weight: 550;
-                padding:3%;
-                box-sizing:border-box;
-            }
-        </style>
-    </head>
-    <body>
-    <div class="topnav">
-      <a style="font-size: 17px;" href="homepage.php"><i class="fa-solid fa-house-user"></i> Home</a>
-      <a style="font-size: 17px;" href="contact.php"><i class="fa-solid fa-phone"></i></i> Contact</a>
-      <a style="font-size: 17px;" href="about.php"><i class="fa-solid fa-book"></i> About</a>
-      <a style="font-size: 17px;" href="viewprofile.php"><i class="fas fa-user-alt"></i> Profile</a>
-      <a style="font-size: 17px;" href="logout.php"><i class="fas fa-power-off"></i> Logout</a>
-      <div  id="log_img">
-      <!-- <img src="login_icon.jpg" alt="no image found" id="login_icon"><br> -->
-      <span style="font-size:17px;color:blue;"><i class="fas fa-user-alt"></i> <?php echo "$username"; ?></span>
-      </div> 
-    </div>
-        <h1 style="text-align: center;font-family: 'Courier New', Courier, monospace;">User Profile</h1>
-        <div class="container">
-        <div class="profile_container">
-            <div style="text-align:center;"><span>👨‍🎓Username</span><br><span style="color:green"><?php echo "$username";?></span></div>
-            <div style="text-align:center;"><span>🏫Institute</span><br><span style="color:green"><?php echo "$institute";?></span></div>
-            <div style="text-align:center;"><span>📧Email-ID</span><br><span style="color:green"><?php echo "$email"?></span></div>
-        </div>
-       </div>
-    </body>
-</html>
+.container{
+  display: flex;
+  justify-content: center;
+  direction: row;
+}
+.profile_container{
+  border: 2px solid white;
+  border-radius: 5px;
+  min-width: 60%;
+  max-width: 100%;
+  padding:1%;
+  background-image: linear-gradient(170deg, teal, rgb(85, 85, 231));
+}
+.profile_container div{
+  border: 1px solid white;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 25px;
+  font-weight: 550;
+  padding:3%;
+  color: white;
+  box-sizing:border-box;
+}
+</style>
+</head>

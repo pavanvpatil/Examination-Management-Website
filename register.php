@@ -15,6 +15,44 @@
     $sqlQuery = "SELECT * FROM quizes";
     $result = mysqli_query($conn, $sqlQuery);
     $data = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+    //edit
+    $sql= "CREATE DATABASE IF NOT EXISTS `$username`";
+    $connq=mysqli_connect('localhost', 'root', '');
+    $connq->query($sql);
+    $conn = mysqli_connect("localhost", "root", "",$username);
+    if(!$conn)
+    {
+        echo "cool";
+    }
+    $sql= "CREATE TABLE IF NOT EXISTS reg_quizes( 
+        id INT NOT NULL ,
+        attempted INT NOT NULL,
+        host TEXT NOT NULL ,
+        q_date DATE NOT NULL , 
+        starttime TIME NOT NULL , 
+        endtime TIME NOT NULL , 
+        duration TIME NOT NULL ,
+        q_name TEXT NOT NULL )";
+    mysqli_query($conn, $sql);
+
+    
+    //fetch from db
+    //datafilter->user registered quizes
+    //data->all available quizes
+    $sql = "SELECT * FROM reg_quizes";
+    $resultFilter = mysqli_query($conn, $sql);
+    $dataFilter = mysqli_fetch_all($resultFilter, MYSQLI_ASSOC);
+
+    $c_day=(int)date("d");
+    $c_month=(int)date("m");
+    $c_year=(int)date("Y");
+    
+    date_default_timezone_set('Asia/Kolkata');
+    $c_hour=(int)date("H");
+    $c_min=(int)date("i");
+    $c_sec=(int)date("s");
+
 ?>
 <head>
     <title>Register</title>
@@ -34,6 +72,7 @@
   width: auto;
   position: sticky;
   top: 0;
+  border: 1px solid black;
 }
 
 .topnav a {
@@ -83,14 +122,74 @@
     <div id="container"></div>
     <form action="homepage.php">
       <div style="display: flex; justify-content:center; margin: 3%;">
-        <button class="btn" style="float: none" type="submit">Back</button>
+        <button class="btn_back" style="float: none" type="submit">Back</button>
       </div>
     </form>
   
    
     <script>
+        var heading = document.getElementById("heading");
         var y = document.getElementById("container");
-        <?php for($i = 0; $i < sizeof($data); $i++) { ?>
+   <?php for($i = 0; $i < sizeof($data); $i++)
+      {
+          $year=(int)substr($data[$i]['date'],0,4);
+          $month=(int)substr($data[$i]['date'],5,2);
+          $day=(int)substr($data[$i]['date'],8,2);
+          $hour=(int)substr($data[$i]["end time"],0,2);
+          $min=(int)substr($data[$i]["end time"],3,2);
+          $sec=(int)substr($data[$i]["end time"],6,2);
+          if($c_year<$year)
+             $key=1;
+          else if($c_year>=$year)
+          {
+             $key=0;
+            if($c_year==$year)
+             {
+                if($c_month<$month)
+                   $key=1;
+                else if($c_month>=$month)
+                {
+                   $key=0;
+                   if($c_month==$month)
+                   {
+                      if($c_day<$day)
+                         $key=1;
+                      else if($c_day>=$day)
+                      {
+                         $key=0;
+                         if($c_day==$day)
+                         {
+                            if($c_hour<$hour)
+                               $key=1;
+                            else if($c_hour>=$hour)
+                            {
+                               $key=0;
+                               if($c_hour==$hour)
+                               {
+                                  if($c_min<$min)
+                                     $key=1;
+                                  else if($c_min>=$min)
+                                  {
+                                     $key=0;
+                                  }
+                               }
+                            }
+                         }
+                      }
+                   }
+                }
+             }
+          }
+          for($j = 0; $j < sizeof($dataFilter); $j++)
+          {
+              if($dataFilter[$j]['id'] == $data[$i]['id'])
+              {
+                $key = 0;
+                break;
+              }
+          }
+         if($key == 1)
+         { ?>
             var form = document.createElement("form");
             form.action = "reg_quiz.php"
             form.method = "POST";
@@ -106,13 +205,13 @@
             button.type = "submit";
             var quizDate = document.createElement("h2");
 
-            heading.innerHTML = "Quiz name: "+"<?= $data[$i]['name'] ?>";
-            startTime.innerHTML = "Start time(24hrs format): "+"<?= $data[$i]['start time'] ?>";
-            endTime.innerHTML = "End time(24hrs format): "+"<?= $data[$i]['end time'] ?>";
-            hostName.innerHTML = "Host name: "+"<?= $data[$i]['host-Email'] ?>";
-            id.innerHTML = "Quiz ID: "+"<?= $data[$i]['id'] ?>";
+            heading.innerHTML = "Quiz Name: "+"<?= $data[$i]['name'] ?>";
+            startTime.innerHTML = "*Start time(24hrs format): "+"<?= $data[$i]['start time'] ?>";
+            endTime.innerHTML = "*End time(24hrs format): "+"<?= $data[$i]['end time'] ?>";
+            hostName.innerHTML = "*Host name: "+"<?= $data[$i]['host'] ?>";
+            id.innerHTML = "*Quiz ID: "+"<?= $data[$i]['id'] ?>";
             button.innerHTML = "Register";
-            quizDate.innerHTML = "Date of conduct: "+"<?= $data[$i]['date'] ?>";
+            quizDate.innerHTML = "*Date of conduct: "+"<?= $data[$i]['date'] ?>";
 
             quizBody.className = "quizContainer";
             heading.className = "heading";
@@ -135,6 +234,11 @@
             quizBody.appendChild(endTime);
             form.appendChild(quizBody);
             y.appendChild(form);
-        <?php } ?>
+        <?php } } ?>
+        var parent = document.getElementById("container");
+        var childs = parent.childNodes.length;
+        if(childs == 0){
+          heading.innerHTML = "No quizes available";
+        }
     </script>
 </body>

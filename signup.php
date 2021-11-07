@@ -115,12 +115,12 @@
                     if($conn1->query($sql))
                     {
                         //echo 'Created the account successfully';
-                        $msg = "Thank you for Registering in our Exam Management Compete\n\nFollowing are the information that u have entered\n Username= $Username\n Password= $password";
-                        $subject= "Thanks for Signing Up in Compete Website";
+                        $msg = "*Thank you for Creating Account in our Exam Management Compete\n\n*Following are the information that You have given:\n >>Username= $Username\n >>Password= $password";
+                        $subject= "Thank You for Signing Up in Compete Website";
                         // use wordwrap() if lines are longer than 70 characters
                         $msg = wordwrap($msg,70);
                         $txt = "Hello world!";
-                        $headers = "From: webmaster@example.com" . "\r\n" ."BCC: anandishegde@gmail.com";//200030041@iitdh.ac.in, 200010022@iitdh.ac.in
+                        $headers = "From: SSL@gmail.com" . "\r\n" ."BCC: anandishegde@gmail.com";
                         // send email
                         if(mail("$Email",$subject,$msg,$headers))
                         {

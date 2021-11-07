@@ -12,10 +12,11 @@
 h1{
     margin-top: 0px;
     font-size: 100px;
-    color: rgb(3, 99, 99);
+    color: white;
     text-align: center;
     text-shadow: 4px 4px 10px grey;
     font-family: Lucida Console;
+    margin-bottom: 7%;
 }
 h2{
     margin-top: 7px;
@@ -77,13 +78,12 @@ button,#log{
     width: 40%;
     height: 12.5%;
     color: white;
-    border-radius: 20px;
     background-color: teal;
     box-shadow: none;
     cursor: pointer;
 }
 button:hover,#log:hover{
-    background-color: rgb(177, 187, 35);
+    background-color: rgb(75, 35, 187);
     color: white;
     transition: 0.5s;
 }
@@ -96,7 +96,7 @@ button:hover,#log:hover{
 body{
    /* background-image: url("trianglify-lowres.png");*/
     background-size: cover;
-    background-image: linear-gradient(170deg,rgb(166, 239, 252), rgb(243, 247, 247));
+    background-image: linear-gradient(170deg,rgb(59, 59, 238), white);
 }
 #bgm{
     margin-left: 1%;

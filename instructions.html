@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Document</title>
+    <style>
+        body{
+            font-family: 'Courier New', Courier, monospace;
+            font-weight:600;
+            background: linear-gradient(170deg,rgb(243, 247, 247),rgb(96, 192, 209) );
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            height: 38rem;
+        }
+        .circle{
+            font-size: 2.4rem;
+            margin-right: 2%;
+        }
+        .inst{
+            margin: 0.6%;
+            padding: 0.6%;
+            display: flex;
+            align-items: center;
+            font-size: 1.3rem;
+            margin-left: 29%;
+        }
+        .red{
+            color: red;
+        }
+        .green{
+            color: green;
+        }
+        .orange{
+            color: orange;
+        }
+        .purple{
+            color: purple;
+        }
+        .blue{
+            color: darkblue
+        }
+        #parent{
+            display: flex;
+            flex-direction: column;
+        }
+        #heading{
+            font-family: 'Courier New', Courier, monospace;
+            color: rgb(66, 66, 66);
+            text-align: center;
+        }
+        .btn{
+            font-size: 18px;
+            border:0.5px solid black;
+            color:black;
+            text-decoration: none;
+            border-radius: 2px;
+            padding: 0.8%;
+            background-color: rgb(166, 239, 252);
+            cursor: pointer;
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: 600;
+            margin: 1%;
+        }
+        .btn:hover{
+            color: white;
+            background-color: green;
+            transition: 0.4s
+        }
+        #btnHolder{
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="heading">Instructions for attempting a quiz : </h1>
+    <div id="parent">
+        <div class="inst">
+            <i class="fa fa-circle circle green" aria-hidden="true"></i>
+            <span>Attempted</span>
+        </div>
+        <div class="inst">
+            <i class="fa fa-circle circle blue" aria-hidden="true"></i>
+            <span>Current</span>
+        </div>
+        <div class="inst">
+            <i class="fa fa-circle circle red" aria-hidden="true"></i>
+            <span>Not attempted</span>
+        </div>
+        <div class="inst">
+            <i class="fa fa-circle circle purple" aria-hidden="true"></i>
+            <span>Attempted and marked for review</span>
+        </div>
+        <div class="inst">
+            <i class="fa fa-circle circle orange" aria-hidden="true"></i>
+            <span>Not attempted and marked for review</span>
+        </div>
+    </div>
+    <div id="btnHolder">
+       <button class="btn" onclick="switchs();">Back</button>
+    </div>
+</body>
+<script>
+    function switchs(){
+        location.replace("attempt.php");
+    }
+</script>
+</html>

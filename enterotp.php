@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -9,7 +8,8 @@
 	<style>
 	
 	body{
-		background-color: yellowgreen;
+			background-image: linear-gradient(170deg,rgb(59, 59, 238), white);
+            font-family: 'Courier New', Courier, monospace;;
 	}
 		input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -33,7 +33,7 @@ input{
 	margin: 10px;
 	height: 35px;
 	width: 65px;
-	border: none;
+	border: 1px solid black;
 	border-radius: 5px;
 	text-align: center;
 	font-family: arimo;
@@ -43,6 +43,7 @@ input{
 }
 
 h1{
+	font-family: 'Courier New', Courier, monospace;;
 	text-align: center;
 	font-family: arimo;
 	color: rgb(111, 255, 111);
@@ -58,16 +59,46 @@ h1{
 	border-radius: 5px;
 	letter-spacing: 2px;
 	cursor: pointer;
-	background: #616161;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #9bc5c3, #616161);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #9bc5c3, #616161); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background-color: teal;
+	color:white;
+	border:1px solid white;
+}
 
+#submit:hover{
+    background-color: rgb(75, 35, 187);
+    color: white;
+    transition: 0.3s;
 }
 
 	</style>
 </head>
 <body>
-	<?php
+    <form action="" method="post">
+	<div class="container">
+		<h1 style="color:white" >ENTER OTP</h1>
+		<div class="userInput">
+			<input type="number" id='ist' name="otp[]" maxlength="1" onkeyup="clickEvent(this,'sec')">
+			<input type="number" id="sec" name="otp[]" maxlength="1" onkeyup="clickEvent(this,'third')">
+			<input type="number" id="third" maxlength="1" name="otp[]" onkeyup="clickEvent(this,'fourth')">
+			<input type="number" id="fourth" maxlength="1" onkeyup="clickEvent(this,'fifth')" name="otp[]">
+			<input type="number" id="fifth" maxlength="1" onkeyup="clickEvent(this,'sixth')" name="otp[]">
+			<input type="number" id="sixth" maxlength="1" name="otp[]">
+
+		</div>
+		<input type="submit" value="Confirm" name="submit" id='submit'>
+	</div>
+    </form>
+	<script>
+		function clickEvent(first,last){
+			if(first.value.length){
+				document.getElementById(last).focus();
+			}
+		} 
+	</script>
+	    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+</html>
+<?php
 		if(@$_POST['submit'])
 		{
 			session_start();
@@ -95,32 +126,7 @@ background: linear-gradient(to right, #9bc5c3, #616161); /* W3C, IE 10+/ Edge, F
 			}
 			else
 			{
-				echo 'PLEASE ENTER CORRECT OTP';
+				echo '<script>alert(`PLEASE ENTER CORRECT OTP`)</script>';
 			}
 		}
-	?>
-    <form action="" method="post">
-	<div class="container">
-		<h1>ENTER OTP</h1>
-		<div class="userInput">
-			<input type="number" id='ist' name="otp[]" maxlength="1" onkeyup="clickEvent(this,'sec')">
-			<input type="number" id="sec" name="otp[]" maxlength="1" onkeyup="clickEvent(this,'third')">
-			<input type="number" id="third" maxlength="1" name="otp[]" onkeyup="clickEvent(this,'fourth')">
-			<input type="number" id="fourth" maxlength="1" onkeyup="clickEvent(this,'fifth')" name="otp[]">
-			<input type="number" id="fifth" maxlength="1" onkeyup="clickEvent(this,'sixth')" name="otp[]">
-			<input type="number" id="sixth" maxlength="1" name="otp[]">
-
-		</div>
-		<input type="submit" value="CONFIRM" name="submit" id='submit'>
-	</div>
-    </form>
-	<script>
-		function clickEvent(first,last){
-			if(first.value.length){
-				document.getElementById(last).focus();
-			}
-		} 
-	</script>
-	    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-</body>
-</html>
+?>

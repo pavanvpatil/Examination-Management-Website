@@ -118,7 +118,7 @@ body{
     width: auto;
     justify-content: space-around;
     flex-direction: row;
-    height: 350px;
+    height: 400px;
     padding: 0.5%;
 }
 
@@ -218,7 +218,7 @@ body{
 }
 .s_slide{
     width: 7700px;
-    height: 350px;
+    height: 400px;
     display: flex;
 }
 .img{
@@ -229,7 +229,7 @@ body{
 </head>
 <body>
 <div class="topnav">
-  <a style="font-size: 17px;" href="homepage.php"><i class="fa-solid fa-house-user"></i> Home</a>
+  <a style="font-size: 17px;" href="homepage.php"><i class="fa-solid fa-house-user"></i> Dashboard</a>
   <a style="font-size: 17px;" href="contact.php"><i class="fa-solid fa-phone"></i></i> Contact</a>
   <a style="font-size: 17px;" href="about.php"><i class="fa-solid fa-book"></i> About</a>
   <a style="font-size: 17px;" href="viewprofile.php"><i class="fas fa-user-alt"></i> Profile</a>
@@ -241,24 +241,26 @@ body{
 <div class="flex-container">
   <div class="flex-child1">
         <div class="s_slide">
-            <img  class="img" id="lastclone" src="sliderImages/6.jpeg" alt="">
+            <img  class="img" id="lastclone" src="sliderImages/7.jpeg" alt="">
             <img  class="img" src="sliderImages/2.jpeg" alt="">
+            <img  class="img" src="sliderImages/9.jpeg" alt="">
+            <img  class="img" src="sliderImages/8.jpeg" alt="">
             <img  class="img" src="sliderImages/4.jpeg" alt="">
             <img  class="img" src="sliderImages/5.jpeg" alt="">
-            <img  class="img" src="sliderImages/7.jpeg" alt="">
-            <img  class="img" src="sliderImages/8.jpeg" alt="">
-            <img  class="img" src="sliderImages/9.jpeg" alt="">
+            <img  class="img" src="sliderImages/2.jpeg" alt="">
             <img  class="img" src="sliderImages/6.jpeg" alt="">
+            <img  class="img" src="sliderImages/7.jpeg" alt="">
             <img  class="img" id="firstclone" src="sliderImages/2.jpeg" alt="">
         </div>
     <script src="1.js"></script>
   </div>
   <div class="flex-child2">
-    <h1 style="text-align: center;">QUIZ PANEL</h1>
-    <a href="attempt.php">Attempt Quiz</a><br>
-    <a href="question.php">Host Quiz</a><br>
-    <a href="#Given_Quizs.php">Given Quizs</a><br>
-    <a href="register.php">Register</a>
+    <h1 style="text-align: center;margin-bottom: 2px; margin-top: 12px;">QUIZ PANEL</h1>
+    <a href="attempt.php">Attempt a Quiz</a><br>
+    <a href="register.php">Register</a><br>
+    <a href="given_quizes.php">Given Quizzes</a><br>
+    <a href="question.php">Host a Quiz</a><br>
+    <a href="hosted_quizes.php">Hosted Quizzes</a>
   </div>
 </div>
 <div class="flex-container2">

@@ -1,56 +1,19 @@
 <?php
-  if($_SERVER['REQUEST_METHOD']=='POST'){
-      session_start();
-      $user= $_SESSION['user'];
-      $host= $_SESSION['q_host_db'];
-      $qname= $_SESSION['q_current_table'];
-      $qnameres= $qname."responses";
-      $conn1= mysqli_connect("localhost","root",'',"$host");
-      // $sql= "SELECT no FROM `$qnameres` WHERE `username`= '$user';";
-      // if(! $conn1->query($sql))
-      // {
-      //     echo $conn1->error;
-      // }
-      // $id=$conn1->insert_id;
-      $answers= $_POST['values'];
-      $sql= "SELECT  `correct_option` FROM `$qname`;";
-      $result=  $conn1->query($sql);
-      $correct= mysqli_fetch_all($result, MYSQLI_ASSOC);
-      $rightans=0; 
-      for ($i=1;$i<=sizeof($answers);$i++)
-      {
-        $j= $i-1;
-        $val= $answers[$j];
-        if($val==$correct[$j]['correct_option'])
-        {   
-          $rightans++;
-        }
-        $sql= "UPDATE `".$qnameres."` SET `$i` = '$val' WHERE `$qnameres`.`username` = '$user';";
-        if(!$conn1->query($sql))
-        {
-            echo $conn1->error;
-        }
-      }
-      $sql= "ALTER TABLE `$qnameres` ADD if not exists `result` INT";
-
-
-      if(!$conn1->query($sql))
-      {
-          echo $conn1->error;
-      }
-      $sql= "UPDATE `".$qnameres."` SET `result` = '$rightans' WHERE `$qnameres`.`username` = '$user';";
-
-      if(!$conn1->query($sql))
-      {
-          echo $conn1->error;
-      }
-      $connuser= mysqli_connect('localhost','root','',$user);
-      $qid= $_SESSION['id'];
-      $sql= "UPDATE reg_quizes SET `attempted`= '1' WHERE `id`='$qid';";
-      $connuser->query($sql);
-      // $sql= "CREATE IF NOT EXISTS "
-      // $sql= "INSERT INTO "
-      unset($_POST);
+    session_start();
+    $id = $_POST['submitted'];
+    $username = $_SESSION['user'];
+    $conn = mysqli_connect("localhost", "root", "", $username);
+    $sql = "SELECT * FROM reg_quizes WHERE id = '$id'";
+    $result = mysqli_query($conn, $sql);
+    $data = $result->fetch_assoc();
+    $q_name =  $data['q_name'];
+    $host = $data['host'];
+    $connh = mysqli_connect("localhost", "root", "", $host);
+    $tableName = $q_name."responses";
+    $sql = "SELECT * FROM $tableName WHERE username = '$username'";
+    $result = mysqli_query($connh, $sql);
+    $data1 = $result->fetch_assoc();
+   
 ?>
 
 <!DOCTYPE html>
@@ -156,7 +119,8 @@
       .print{
         position: relative;
         display: flex;
-        flex-direction: row-reverse;
+        flex-direction: row;
+        justify-content: space-between;
         margin: 3%;
       }
       .printBtn{
@@ -181,13 +145,13 @@
   <a style="font-size: 17px;" href="viewprofile.php"><i class="fas fa-user-alt"></i> Profile</a>
   <a style="font-size: 17px;" href="logout.php"><i class="fas fa-power-off"></i> Logout</a>
   <div  id="log_img">
-  <span style="font-size:17px;color:blue;"><i class="fas fa-user-alt"></i> <?php echo "$user"; ?></span>
+  <span style="font-size:17px;color:blue;"><i class="fas fa-user-alt"></i> <?php echo "$username"; ?></span>
   </div> 
 </div>
   <h1 class="heading">
     Quiz Name: 
     <span style="color: rgb(0, 183, 255)">
-    <?php echo $qname ?>
+    <?php echo $q_name ?>
     </span>
   </h1>
 
@@ -201,32 +165,34 @@
     <h1>
       Host name: 
       <span style=" color: rgb(114, 113, 113)">
-        <?php echo $_SESSION['q_host_db']; ?>
+        <?php echo $data['host']; ?>
       </span>
     </h1>
   </div>
 
   <div class="flex2">
     <h1>
-      Quiz date: <?php echo $_SESSION['q_date'];?>
+      Quiz date: <?php echo $data['q_date'];?>
     </h1>
     <h1>
-      Quiz ID: <?php echo $_SESSION['q_id']; ?>
+      Quiz ID: <?php echo $data['id']; ?>
     </h1>
   </div>
 
   <div class="result">
-  <h2 style="font-size: 2rem; margin-top: 0px;">Your score: <span><?php echo '<span style="color:rgb(21, 167, 21);">'.$rightans.'</span>'.'/'.'<span style="color: rgb(0, 183, 255);">'.sizeof($answers).'</span>'; ?></span></h2>
+      <?php $totalq= count($data1)-3;?>
+  <h2 style="font-size: 2rem; margin-top: 0px;">Your score: <span><?php echo '<span style="color:rgb(21, 167, 21);">'.$data1['result'].'</span>'.'/'.'<span style="color: rgb(0, 183, 255);">'.$totalq.'</span>'; ?></span></h2>
     <h1><i class="fas fa-poll-h"></i> Question Statistics</h1>
     <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
 </div>
 <div class="print no-print">
-  <button class="printBtn"onclick="window.print();">Print Result</button>
+  <button class="printBtn" onclick="switchs()">Back</button>
+  <button class="printBtn" onclick="window.print();">Print Result</button>
 </div>
 
 <script>
   var xValues = ["Correct", "Total"];
-  var yValues = [<?=$rightans?>,<?=sizeof($answers)?>];
+  var yValues = [<?=$data1['result']?>,<?=(count($data1)-3)?>];
   var barColors = ["rgb(21, 167, 21)", "rgb(0, 183, 255)"];
 
 
@@ -243,29 +209,20 @@ new Chart("myChart", {
     legend: {display: false},
     title: {
       display: false,
-      text: "World Wine Production 2018"
+      text: ""
     },
     scales: {
-      xAxes: [{ticks: {min: 0, max:<?=sizeof($answers)?>}}]
+      xAxes: [{ticks: {min: 0, max:<?=$totalq?>}}]
     }
   }
 });
-    
-    if ( window.history.replaceState ) {
-        window.history.replaceState( null, null, window.location.href );
-    }
-    
 </script>
-
+<script>
+  function switchs(){
+    location.replace("given_quizes.php");
+  }
+</script>
 </body>
 </html>
-
-<?php
-}
-?>
-
-
-
-
 
 

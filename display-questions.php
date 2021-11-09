@@ -10,7 +10,7 @@
     $noOfQuestions = sizeof($questionSet); 
     $responses= $tableName."responses";
     $user=$_SESSION['user'];
-    $sql= "SELECT * FROM `$responses`";
+    $sql= "SELECT * FROM `$responses` WHERE username='$user'";
     $result1= $connect->query($sql);
     $res= $result1->fetch_assoc();
    

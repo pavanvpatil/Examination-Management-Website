@@ -117,6 +117,10 @@
         {
             echo '<script type="text/javascript">ALERT()</script>';
         }
+        if($_GET['flag']==2)
+        {
+            echo "<script>alert('PASSWORD CHANGED SUCCESSFULLY')</script>";
+        }
     }
     $conn = mysqli_connect('localhost', 'root', '');
     $sqlQuery = 'CREATE DATABASE IF NOT EXISTS userInfo ;';
@@ -153,7 +157,7 @@
     
     <div class="logo_title">
         <!-- <img src="logo.png" alt="image not loaded" width=100px height=100px style="border-radius: 50%;margin-top: 1.8%;"> -->
-        <h1 id="title" style="letter-spacing: 0.1rem;font-size:100px;"></i><i class="fa-solid fa-arrow-trend-up" style="font-size: 70px; color: white; letter-spacing: 1rem"></i>COMPETE</h1>
+        <h1 id="title" style="letter-spacing: 0.1rem;font-size:100px;"><i class="fa fa-trophy" style="font-size: 70px; letter-spacing: 1rem; color: rgb(23, 189, 189);" aria-hidden="true"></i>COMPETE</h1>
     </div>
    <!-- <center><p id="errors"></p></center> -->
     <div class="container">

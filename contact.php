@@ -11,7 +11,7 @@
     $row = $result->fetch_assoc();
     $username=$row['uName'];
 ?>
-<link rel="icon" href="Extra/letter_q.png">
+<link rel="icon" href="Website-icon/letter_q.png">
 <div class="topnav">
       <a style="font-size: 17px;" href="homepage.php"><i class="fa-solid fa-house-user"></i> Dashboard</a>
       <a style="font-size: 17px;" href="contact.php"><i class="fa-solid fa-phone"></i></i> Contact</a>

@@ -104,7 +104,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="Extra/letter_q.png">
+    <link rel="icon" href="Website-icon/letter_q.png">
     <title>Add questions</title>
     <link rel="stylesheet" href="questionsadd.css">
 </head>

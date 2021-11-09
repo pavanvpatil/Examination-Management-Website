@@ -1,12 +1,25 @@
 <?php 
     session_start();
     $username = $_SESSION['user'];
+    $conn = mysqli_connect("localhost", "root", "",$username);
+    $sql= "CREATE TABLE IF NOT EXISTS reg_quizes( 
+        id INT NOT NULL ,
+        attempted INT NOT NULL,
+        host TEXT NOT NULL ,
+        q_date DATE NOT NULL , 
+        starttime TIME NOT NULL , 
+        endtime TIME NOT NULL , 
+        duration TIME NOT NULL ,
+        q_name TEXT NOT NULL )";
+    mysqli_query($conn, $sql);
     $conn = mysqli_connect("localhost", "root", "", $username);
     $sql = "SELECT * FROM reg_quizes WHERE attempted = 1";
     $result = mysqli_query($conn, $sql);
     $data = mysqli_fetch_all($result, MYSQLI_ASSOC);
 ?>
 <head>
+<link rel="icon" href="Website-icon/letter_q.png">
+<title>Compete</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
          body{

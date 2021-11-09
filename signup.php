@@ -1,7 +1,7 @@
 <head>
     <title>Compete</title>
     <link rel="stylesheet" href="style_sign.css">
-    <link rel="icon" href="Extra/letter_q.png">
+    <link rel="icon" href="Website-icon/letter_q.png">
 </head>
 
 <div id="layout"></div>

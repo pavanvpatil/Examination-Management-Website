@@ -57,7 +57,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="Extra/letter_q.png">
+    <link rel="icon" href="Website-icon/letter_q.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="1.css">
     <!-- <link rel="stylesheet" href="SliderCode/slider-style.css"> -->
@@ -252,7 +252,7 @@ body{
             <img  class="img" src="sliderImages/7.jpeg" alt="">
             <img  class="img" id="firstclone" src="sliderImages/2.jpeg" alt="">
         </div>
-    <script src="1.js"></script>
+    <script src="slider.js"></script>
   </div>
   <div class="flex-child2">
     <h1 style="text-align: center;margin-bottom: 2px; margin-top: 12px;">QUIZ PANEL</h1>

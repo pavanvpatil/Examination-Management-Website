@@ -41,6 +41,7 @@
         font-weight:600;
       }
       .topnav {
+         z-index: 100;
   overflow: hidden;
   background-color:rgb(176, 237, 248);
   height: auto;
@@ -93,7 +94,7 @@
    color: white;
    font-size: 15px;
    font-weight: 600;
-   z-index: -1;
+   z-index: 1;
 }
    .ins:hover{
       box-shadow: 4px 4px 10px grey;
